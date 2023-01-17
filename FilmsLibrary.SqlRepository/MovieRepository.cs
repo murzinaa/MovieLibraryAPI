@@ -44,7 +44,6 @@ namespace FilmsLibrary.SqlRepository
                 .ThenInclude(am => am.Actor)
                 .Include(m => m.Comments)
                 .Where(m => movieIds.Contains(m.Id)).ToListAsync();
-
             return _mapper.Map<List<Movie>>(movies);
         }
 
@@ -144,16 +143,42 @@ namespace FilmsLibrary.SqlRepository
             return await _context.Genres.AnyAsync(g => g.Id == id);
         }
 
-        public async Task<List<Movie>> GetAllMoviesAsync()
+        public async Task<List<Movie>> GetAllMoviesAsync(int pageNumber, int pageSize)
         {
-            var movies =  await _context.Movies.ToListAsync();
+            var movies =  await _context.Movies
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
             return _mapper.Map<List<Movie>>(movies);
         }
 
+        public int GetTotalNumberOfRecords(int pageSize)
+        {
+            return _context.Movies.Count();
+        }
+        
+        
         public async Task<List<Genre>> GetGenres()
         {
             var genres = await _context.Genres.ToListAsync();
             return _mapper.Map<List<Genre>>(genres);
+        }
+
+        public async Task<int> AddActor(Actor actor)
+        {
+            var entity = _mapper.Map<Models.Sql.Actor>(actor);
+            await _context.AddAsync(entity);
+            await _context.SaveChangesAsync();
+            return entity.Id;
+        }
+
+        public async Task<Actor> GetActorByName(string firstName, string lastName)
+        {
+            var actor = await _context.Actors
+                .Where(a => a.Name == firstName && a.Surname == lastName)
+                .FirstOrDefaultAsync();
+            return _mapper.Map<Actor>(actor);
         }
     }
 }

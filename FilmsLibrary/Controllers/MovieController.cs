@@ -169,14 +169,10 @@ namespace FilmsLibrary.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
-        public async Task<GetAllMoviesResponse> GetAllMovies()
+        public async Task<GetAllMoviesResponse> GetAllMovies([FromQuery] GetAllMoviesRequest request)
         {
-            var movies = await _service.GetAllMoviesAsync();
-
-            return new GetAllMoviesResponse
-            {
-                Movies = _mapper.Map<List<Movie>>(movies),
-            };
+            var movies = await _service.GetAllMoviesAsync(request.PageNumber, request.PageSize);
+            return _mapper.Map<GetAllMoviesResponse>(movies);
         }
         
         /// <summary>

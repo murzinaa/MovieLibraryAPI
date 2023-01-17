@@ -1,4 +1,5 @@
 ﻿using FilmsLibrary.Infrastructure;
+using FilmsLibrary.Models.Contracts;
 using FilmsLibrary.Models.Domain;
 using FilmsLibrary.Models.Domain.Exceptions;
 
@@ -89,9 +90,18 @@ namespace FilmsLibrary.Application
             return movies;
         }
 
-        public async Task<List<Movie>> GetAllMoviesAsync()
+        public async Task<GetAllMovies> GetAllMoviesAsync(int pageNumber, int pageSize)
         {
-            return await _repository.GetAllMoviesAsync();
+            var movies = await _repository.GetAllMoviesAsync(pageNumber, pageSize);
+            var totalRecords = _repository.GetTotalNumberOfRecords(pageSize);
+
+            return new GetAllMovies
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                TotalRecords = totalRecords,
+                Movies = movies
+            };
         }
 
         public async Task<List<Genre>> GetGenresAsync()

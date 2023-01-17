@@ -15,7 +15,7 @@ namespace FilmsLibrary.Models.Sql
         public int GenreId { get; set; }
 
         public int Rating { get; set; }
-        
+
         public string ImageUrl { get; set; }
 
         public virtual ICollection<ActorMovie> ActorMovies { get; set; }
