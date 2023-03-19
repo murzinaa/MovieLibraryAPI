@@ -13,6 +13,8 @@ namespace FilmsLibrary.Mappers
             CreateMap<UpdateMovieRequest, UpdateMovie>();
 
             CreateMap<AddActorRequest, Actor>();
+
+            CreateMap<SearchMoviesRequest, SearchMovie>();
         }
     }
 }

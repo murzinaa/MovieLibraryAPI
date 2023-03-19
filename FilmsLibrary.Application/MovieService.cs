@@ -90,12 +90,12 @@ namespace FilmsLibrary.Application
             return movies;
         }
 
-        public async Task<GetAllMovies> GetAllMoviesAsync(int pageNumber, int pageSize)
+        public async Task<MoviesWithPaging> GetAllMoviesAsync(int pageNumber, int pageSize)
         {
             var movies = await _repository.GetAllMoviesAsync(pageNumber, pageSize);
             var totalRecords = _repository.GetTotalNumberOfRecords(pageSize);
 
-            return new GetAllMovies
+            return new MoviesWithPaging
             {
                 PageNumber = pageNumber,
                 PageSize = pageSize,
@@ -107,6 +107,16 @@ namespace FilmsLibrary.Application
         public async Task<List<Genre>> GetGenresAsync()
         {
             return await _repository.GetGenres();
+        }
+
+        public async Task<MoviesWithPaging> SearchMovies(SearchMovie searchCriteria, int pageNumber, int pageSize)
+        {
+            return await _repository.SearchMovies(searchCriteria, pageNumber, pageSize);
+        }
+
+        public async Task<Genre> GetGenreById(int id)
+        {
+            return await _repository.GetGenreById(id);
         }
     }
 }

@@ -22,6 +22,8 @@ namespace FilmsLibrary.Models.Contracts
         [Range(0, 100, ErrorMessage = "Rating should be from 0 to 100%.")]
         public int Rating { get; set; }
 
+        public string ImageUrl { get; set; }
+
         public List<int> ActorIds { get; set; }
     }
 }

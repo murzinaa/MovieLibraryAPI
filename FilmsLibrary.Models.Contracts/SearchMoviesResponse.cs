@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using FilmsLibrary.Models.Contracts.Models;
 
-namespace FilmsLibrary.Models.Domain
+namespace FilmsLibrary.Models.Contracts
 {
-    public class GetAllMovies
+    public class SearchMoviesResponse
     {
         public int PageNumber { get; set; }
 

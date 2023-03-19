@@ -17,7 +17,9 @@ namespace FilmsLibrary.Mappers
 
             CreateMap<Models.Domain.Genre, Models.Contracts.Models.Genre>();
 
-            CreateMap<Models.Domain.GetAllMovies, Models.Contracts.GetAllMoviesResponse>();
+            CreateMap<Models.Domain.MoviesWithPaging, Models.Contracts.GetAllMoviesResponse>();
+            
+            CreateMap<Models.Domain.MoviesWithPaging, Models.Contracts.SearchMoviesResponse>();
         }
     }
 }

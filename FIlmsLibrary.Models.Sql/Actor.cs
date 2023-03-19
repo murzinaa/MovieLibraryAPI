@@ -10,8 +10,6 @@ namespace FilmsLibrary.Models.Sql
 
         public string Surname { get; set; }
 
-        public int Age { get; set; }
-
         public virtual ICollection<ActorMovie> ActorMovies { get; set; }
     }
 }

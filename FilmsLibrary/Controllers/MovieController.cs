@@ -193,5 +193,41 @@ namespace FilmsLibrary.Controllers
                 Genres = _mapper.Map<List<Genre>>(genres),
             };
         }
+        
+        /// <summary>
+        /// Search movies by search criteria.
+        /// </summary>
+        /// <returns>SearchMoviesResponse.</returns>
+        [HttpPost(SearchMoviesRequest.Route)]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        public async Task<SearchMoviesResponse> SearchMovies([FromBody] SearchMoviesRequest request)
+        {
+            var searchCriteria = _mapper.Map<SearchMovie>(request);
+
+            var movies = await _service.SearchMovies(searchCriteria, request.PageNumber, request.PageSize);
+
+            return _mapper.Map<SearchMoviesResponse>(movies);
+        }
+        
+        // <summary>
+        /// Get genre by id.
+        /// </summary>
+        /// <returns>GetGenreByIdResponse.</returns>
+        [HttpGet(GetGenreByIdRequest.Route)]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        public async Task<GetGenreByIdResponse> GetGenreById([FromRoute] GetGenreByIdRequest request)
+        {
+            var genre = await _service.GetGenreById(request.Id);
+            return new GetGenreByIdResponse
+            {
+                Genre = _mapper.Map<Genre>(genre),
+            };
+        }
     }
 }
