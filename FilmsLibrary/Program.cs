@@ -21,7 +21,6 @@ namespace FilmsLibrary
                     logging.AddConsole();
                     logging.AddDebug();
                 })
-                .UseNLog()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
