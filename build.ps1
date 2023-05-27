@@ -1,5 +1,9 @@
 #!/usr/bin/env pwsh
-$DotNetInstallerUri = 'https://dot.net/v1/dotnet-install.ps1';
+param (
+    [string]$DotNetVersion = "6.0" # Specify the desired .NET version
+)
+
+$DotNetInstallerUri = 'https://dot.net/v1/dotnet-install.ps1'
 $DotNetUnixInstallerUri = 'https://dot.net/v1/dotnet-install.sh'
 $PSScriptRoot = Split-Path $MyInvocation.MyCommand.Path -Parent
 
@@ -65,17 +69,19 @@ if (!(Test-Path $InstallPath)) {
 }
 
 if ($IsMacOS -or $IsLinux) {
+    # Dotnet install script for macOS/Linux
     $ScriptPath = Join-Path $InstallPath 'dotnet-install.sh'
-    (New-Object System.Net.WebClient).DownloadFile($DotNetUnixInstallerUri, $ScriptPath);
-    & bash $ScriptPath --jsonfile "$GlobalJsonPath" --install-dir "$InstallPath" --no-path
+    (New-Object System.Net.WebClient).DownloadFile($DotNetUnixInstallerUri, $ScriptPath)
+    & bash $ScriptPath --jsonfile "$GlobalJsonPath" --install-dir "$InstallPath" --no-path --version $DotNetVersion
 
     Remove-PathVariable "$InstallPath"
     $env:PATH = "$($InstallPath):$env:PATH"
 }
 else {
+    # Dotnet install script for Windows
     $ScriptPath = Join-Path $InstallPath 'dotnet-install.ps1'
-    (New-Object System.Net.WebClient).DownloadFile($DotNetInstallerUri, $ScriptPath);
-    & $ScriptPath -JSonFile $GlobalJsonPath -InstallDir $InstallPath;
+    (New-Object System.Net.WebClient).DownloadFile($DotNetInstallerUri, $ScriptPath)
+    & $ScriptPath -JSonFile $GlobalJsonPath -InstallDir $InstallPath -Version $DotNetVersion
 
     Remove-PathVariable "$InstallPath"
     $env:PATH = "$InstallPath;$env:PATH"
