@@ -18,5 +18,15 @@ namespace FilmsLibrary.Application
 
             return actors;
         }
+
+        public async Task<int> AddActor(Actor actor)
+        {
+            var existingActor = await _repository.GetActorByName(actor.Name, actor.Surname);
+            if (existingActor == null)
+            {
+                return await _repository.AddActor(actor);
+            }
+            return existingActor.Id;
+        }
     }
 }

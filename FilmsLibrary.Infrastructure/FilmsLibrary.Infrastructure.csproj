@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FilmsLibrary.Models.Contracts\FilmsLibrary.Models.Contracts.csproj" />
     <ProjectReference Include="..\FilmsLibrary.Models.Domain\FilmsLibrary.Models.Domain.csproj" />
   </ItemGroup>
 

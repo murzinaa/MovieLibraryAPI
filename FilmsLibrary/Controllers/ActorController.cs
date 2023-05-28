@@ -19,7 +19,7 @@ namespace FilmsLibrary.Controllers
         }
 
         /// <summary>
-        /// Get all actors
+        /// Get all actors.
         /// </summary>
         /// <returns>GetActorsResponse. List of all actors.</returns>
         [HttpGet(GetActorsRequest.Route)]
@@ -35,6 +35,26 @@ namespace FilmsLibrary.Controllers
             return new GetActorsResponse
             {
                 Actors = result,
+            };
+        }
+
+        /// <summary>
+        /// Creates actor and returns id of created actor. If actor with given first name and last name exists,
+        /// the id of existing actor will be returned.
+        /// </summary>
+        /// <returns>An id of new actor.</returns>
+        [HttpPost(AddActorRequest.Route)]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        public async Task<AddActorResponse> AddActor(AddActorRequest request)
+        {
+            var actor = _mapper.Map<Models.Domain.Actor>(request);
+            int actorId = await _actorService.AddActor(actor);
+            return new AddActorResponse
+            {
+                Id = actorId
             };
         }
     }

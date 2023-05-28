@@ -22,8 +22,18 @@ namespace FilmsLibrary.Infrastructure
 
         Task<bool> GenreExistsAsync(int id);
 
-        Task<List<Movie>> GetAllMoviesAsync();
+        Task<List<Movie>> GetAllMoviesAsync(int pageNumber, int pageSize);
 
         Task<List<Genre>> GetGenres();
+
+        Task<int> AddActor(Actor actor);
+
+        Task<Actor> GetActorByName(string firstName, string lastName);
+
+        int GetTotalNumberOfRecords(int pageSize);
+
+        Task<MoviesWithPaging> SearchMovies(SearchMovie searchCriteria, int pageNumber, int pageSize);
+
+        Task<Genre> GetGenreById(int id);
     }
 }

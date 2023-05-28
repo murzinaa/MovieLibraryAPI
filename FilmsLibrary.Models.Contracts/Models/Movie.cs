@@ -16,6 +16,8 @@ namespace FilmsLibrary.Models.Contracts.Models
         
         public string ImageUrl { get; set; }
 
+        public int Rating { get; set; }
+
         public List<Comment> Comments { get; set; }
 
         public List<Actor> Actors { get; set; }

@@ -19,6 +19,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilmsLibrary.Infrastructure
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{F9240747-4627-430B-A0F5-84F3C49EB60B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BE656021-12AE-4B8F-B83C-3C27D08404BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilmsLibrary.Tests", "FilmsLibrary.Tests\FilmsLibrary.Tests.csproj", "{0FDADFB6-CCD3-4840-ACF0-796ACEF69EE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +57,10 @@ Global
 		{9239A2BB-79E8-47DA-8FEE-B9B595B2AC84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9239A2BB-79E8-47DA-8FEE-B9B595B2AC84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9239A2BB-79E8-47DA-8FEE-B9B595B2AC84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FDADFB6-CCD3-4840-ACF0-796ACEF69EE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FDADFB6-CCD3-4840-ACF0-796ACEF69EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FDADFB6-CCD3-4840-ACF0-796ACEF69EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FDADFB6-CCD3-4840-ACF0-796ACEF69EE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +69,7 @@ Global
 		{0F8BE2BB-CA9E-4149-BC6C-5FE74803EA4D} = {F9240747-4627-430B-A0F5-84F3C49EB60B}
 		{8BA8D11A-708A-47BF-8851-2FE5CF8B2FC8} = {F9240747-4627-430B-A0F5-84F3C49EB60B}
 		{C4187B60-8713-4E3B-B92C-E4C5D5B003DF} = {F9240747-4627-430B-A0F5-84F3C49EB60B}
+		{0FDADFB6-CCD3-4840-ACF0-796ACEF69EE3} = {BE656021-12AE-4B8F-B83C-3C27D08404BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {41635024-E923-4670-AB2D-CC03CD94ED20}

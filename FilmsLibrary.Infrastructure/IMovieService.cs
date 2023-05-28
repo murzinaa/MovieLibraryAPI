@@ -1,4 +1,5 @@
-﻿using FilmsLibrary.Models.Domain;
+﻿using FilmsLibrary.Models.Contracts;
+using FilmsLibrary.Models.Domain;
 
 namespace FilmsLibrary.Infrastructure
 {
@@ -18,8 +19,12 @@ namespace FilmsLibrary.Infrastructure
 
         Task<List<Movie>> GetSimilarMovies(int movieId);
 
-        Task<List<Movie>> GetAllMoviesAsync();
+        Task<MoviesWithPaging> GetAllMoviesAsync(int pageNumber, int pageSize);
 
         Task<List<Genre>> GetGenresAsync();
+        
+        Task<MoviesWithPaging> SearchMovies(SearchMovie searchCriteria, int pageNumber, int pageSize);
+
+        Task<Genre> GetGenreById(int id);
     }
 }

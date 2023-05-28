@@ -12,15 +12,13 @@ namespace FilmsLibrary.SqlRepository.Utilities
                 {
                     Id = 1,
                     Name = "Orlando",
-                    Surname = "Bloom",
-                    Age = 45,
+                    Surname = "Bloom"
                 },
                 new Actor
                 {
                     Id = 2,
                     Name = "Johnny",
-                    Surname = "Depp",
-                    Age = 59
+                    Surname = "Depp"
                 });
             builder.Entity<Movie>().HasData(new Movie
             {
