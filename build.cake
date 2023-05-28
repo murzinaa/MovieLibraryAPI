@@ -1,4 +1,4 @@
-var target = Argument("target", "Test");
+var target = Argument("target", "Publish");
 var configuration = Argument("configuration", "Release");
 
 var solutionPath = "./";
@@ -25,6 +25,17 @@ Task("Test")
         {
             Configuration = configuration,
             NoBuild = true,
+        });
+    });
+
+Task("Publish")
+    .IsDependentOn("Test")
+    .Does(() => {
+        DotNetPublish(solutionPath, new DotNetPublishSettings{
+            NoRestore = true,
+            NoBuild = true,
+            Configuration = configuration,
+            OutputDirectory = outputDir
         });
     });
 
